@@ -1,0 +1,117 @@
+{
+    "title": "MonitorManagementClient",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/monitor-diagnosticsSettings_API/2017-05-01-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "DiagnosticSettings_List": {
+            "main": "./lib/actions/DiagnosticSettings_List.js",
+            "title": "Gets the active diagnostic settings list for the specified resource.",
+            "description": "Gets the active diagnostic settings list for the specified resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DiagnosticSettings_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DiagnosticSettings_Delete": {
+            "main": "./lib/actions/DiagnosticSettings_Delete.js",
+            "title": "Deletes existing diagnostic settings for the specified resource.",
+            "description": "Deletes existing diagnostic settings for the specified resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DiagnosticSettings_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DiagnosticSettings_Get": {
+            "main": "./lib/actions/DiagnosticSettings_Get.js",
+            "title": "Gets the active diagnostic settings for the specified resource.",
+            "description": "Gets the active diagnostic settings for the specified resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DiagnosticSettings_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DiagnosticSettings_CreateOrUpdate": {
+            "main": "./lib/actions/DiagnosticSettings_CreateOrUpdate.js",
+            "title": "Creates or updates diagnostic settings for the specified resource.",
+            "description": "Creates or updates diagnostic settings for the specified resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DiagnosticSettings_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

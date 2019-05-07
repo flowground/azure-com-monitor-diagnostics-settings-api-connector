@@ -1,0 +1,160 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceUri": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "A proxy only azure resource object",
+                    "properties": {
+                        "id": {
+                            "description": "Azure resource Id",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Azure resource name",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Azure resource type",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The diagnostic setting resource.",
+            "properties": {
+                "properties": {
+                    "description": "Properties of a Diagnostic Settings Resource.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "eventHubAuthorizationRuleId": {
+                            "description": "The resource Id for the event hub authorization rule.",
+                            "type": "string"
+                        },
+                        "eventHubName": {
+                            "description": "The name of the event hub. If none is specified, the default event hub will be selected.",
+                            "type": "string"
+                        },
+                        "logs": {
+                            "description": "the list of logs settings.",
+                            "items": {
+                                "description": "Part of MultiTenantDiagnosticSettings. Specifies the settings for a particular log.",
+                                "properties": {
+                                    "category": {
+                                        "description": "Name of a Diagnostic Log category for a resource type this setting is applied to. To obtain the list of Diagnostic Log categories for a resource, first perform a GET diagnostic settings operation.",
+                                        "type": "string"
+                                    },
+                                    "enabled": {
+                                        "description": "a value indicating whether this log is enabled.",
+                                        "type": "boolean"
+                                    },
+                                    "retentionPolicy": {
+                                        "description": "the retention policy for this log.",
+                                        "properties": {
+                                            "days": {
+                                                "description": "the number of days for the retention in days. A value of 0 will retain the events indefinitely.",
+                                                "format": "int32",
+                                                "minimum": 0,
+                                                "type": "integer"
+                                            },
+                                            "enabled": {
+                                                "description": "a value indicating whether the retention policy is enabled.",
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "required": [
+                                            "enabled",
+                                            "days"
+                                        ],
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "enabled"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "metrics": {
+                            "description": "the list of metric settings.",
+                            "items": {
+                                "description": "Part of MultiTenantDiagnosticSettings. Specifies the settings for a particular metric.",
+                                "properties": {
+                                    "category": {
+                                        "description": "Name of a Diagnostic Metric category for a resource type this setting is applied to. To obtain the list of Diagnostic metric categories for a resource, first perform a GET diagnostic settings operation.",
+                                        "type": "string"
+                                    },
+                                    "enabled": {
+                                        "description": "a value indicating whether this category is enabled.",
+                                        "type": "boolean"
+                                    },
+                                    "retentionPolicy": {
+                                        "description": "the retention policy for this category.",
+                                        "properties": {
+                                            "days": {
+                                                "description": "the number of days for the retention in days. A value of 0 will retain the events indefinitely.",
+                                                "format": "int32",
+                                                "minimum": 0,
+                                                "type": "integer"
+                                            },
+                                            "enabled": {
+                                                "description": "a value indicating whether the retention policy is enabled.",
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "required": [
+                                            "enabled",
+                                            "days"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "timeGrain": {
+                                        "description": "the timegrain of the metric in ISO8601 format.",
+                                        "format": "duration",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "enabled"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "serviceBusRuleId": {
+                            "description": "The service bus rule Id of the diagnostic setting. This is here to maintain backwards compatibility.",
+                            "type": "string"
+                        },
+                        "storageAccountId": {
+                            "description": "The resource ID of the storage account to which you would like to send Diagnostic Logs.",
+                            "type": "string"
+                        },
+                        "workspaceId": {
+                            "description": "The workspace ID (resource ID of a Log Analytics workspace) for a Log Analytics workspace to which you would like to send Diagnostic Logs. Example: /subscriptions/4b9e8510-67ab-4e9a-95a9-e2f1e570ea9c/resourceGroups/insights-integration/providers/Microsoft.OperationalInsights/workspaces/viruela2",
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
